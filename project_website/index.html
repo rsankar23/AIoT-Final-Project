@@ -11,13 +11,14 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<script type="text/javascript" id="MathJax-script" async
+      		src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    	</script>
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 	</head>
 	<body>
-	<script type="text/javascript" id="MathJax-script" async
-      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-    </script>
+
 		<!-- Header -->
 			<div id="header">
 
@@ -190,6 +191,9 @@
 							</header>
 							<h4 align="left">YOLO Object Detection Performance</h4>
 							<p align="left">Fine-tuning YOLOv8n on home-relevant classes achieved 85.4% mAP with significant noise reduction. The specialized model increased average confidence from 37.3% to 68.5% compared to the pretrained COCO dataset. By focusing on only 12 classes of common household objects instead of 80, the model eliminates false positives like surfboards and laptops that distract from assistive operations.</p>
+							<p align="left">$$Precision = \frac{TP}{TP + FP}$$</p>
+							<p align="left">$$Recall = \frac{TP}{TP + FN}$$</p>
+							<p align="left">$$F-1 = 2\times\frac{precision \times recall}{precision + recall}$$</p>
 							<p align="left">Below are the plots generated from the testing phase with a randomly sampled 20% of the initial dataset. The F1 Confidence Curve plots the F1 score against different confidence thresholds. A higher F1 score indicates better performance, and the confidence threshold at which the F1 score is maximized is often considered the optimal threshold for making predictions. The Precision-Recall Curve is a plot that shows the trade-off between precision and recall for different threshold values. The area under the curve (AUC) is a measure of how well the model is able to distinguish between classes. The closer the curve follows the top-right corner, the more accurate the model is. The Precision-Confidence Curve plots precision against different confidence thresholds. The Recall-Confidence Curve plots recall against different confidence thresholds. The Confusion Matrix is a table layout that allows visualization of the performance of an algorithm across 4 different categories.</p>
 
 							<ol align="left" type="I">
@@ -263,8 +267,24 @@
 							<header>
 								<h2>References</h2>
 							</header>
-
-							<p align="left">Blah blah blah</p>
+							<ol>
+								<li>
+									<blockquote cite="https://viso.ai/deep-learning/yolov8-guide/">
+									<p>Boesch, Gaudenz. “Explore Yolov8: Latest in Object Detection Tech.” Viso.Ai, viso.ai, 4 Apr. 2025, viso.ai/deep-learning/yolov8-guide/. </p>
+									</blockquote>
+								</li>
+								<li>
+									<blockquote cite="https://docs.ultralytics.com/datasets/detect/homeobjects-3k/">
+									<p>Ultralytics. “HomeObjects-3K Dataset.” Ultralytics YOLO Docs, 16 Nov. 2025, docs.ultralytics.com/datasets/detect/homeobjects-3k/. </p>
+									</blockquote>
+								</li>
+								<li>
+									<blockquote cite="https://docs.ultralytics.com/models/yolov8/">
+									<p>Ultralytics. “Explore Ultralytics Yolov8.” Ultralytics YOLO Docs, 28 Oct. 2025, docs.ultralytics.com/models/yolov8/. </p>
+									</blockquote>
+								</li>
+							</ol>
+							
 
 						</div>
 					</section>
