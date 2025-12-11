@@ -15,7 +15,9 @@
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 	</head>
 	<body>
-
+	<script type="text/javascript" id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
 		<!-- Header -->
 			<div id="header">
 
@@ -129,11 +131,41 @@
 
 
 							<h4 align="left">Real-Time Vision Algorithm</h4>
-							<p>
-								The "YOLO" (You Only Look Once) algorithm is a prominent real-time object detection algorithm that uses a single convolutional neural network to predict bounding boxes and classify objects simultaneously.
+							<p align="left">
+								The "YOLO" (You Only Look Once) algorithm is a prominent real-time object detection algorithm that uses a single convolutional neural network to predict bounding boxes and classify objects simultaneously. YOLO is unique in that it treats object detection as a single regression task, predicting bouding boxes and class probabilities directly from full images in one evaluation. This has made YOLO significantly faster than previous two-way detectors.
 							</p>
+							<img src = "images/yolo_v8_arch.webp">
+							<h5 align="left"left>Model Architecture</h5>
+							<p align="left">The YOLO model is comprised of a three-part architectured that follows a "Backbone, Neck, Head" pattern. In this architecture, the backbone serves to extract core features from the input image, the neck takes in multi-scale features from the backbone and fuses or aggregates them to create a richer feature set; often using the Feature Pyramid Network and Path Aggression Network techniques, finally, the head consumes the refined feature information from the nexk to make final predictions, generate bounding box coordinates; object confidence scores and class labels.</p>
 
-							<p align="left">Blah blah blah</p>
+							<table style="border: 2px solid; border-color: #114D34;">
+								<tr style="border: 2px solid #114D34;">
+									<th><strong>Parameter</strong></th>
+									<th><b>Value</b></th>
+								</tr>
+								<tr>
+									<th>Training Epochs</th>
+									<th>100</th>
+								</tr>
+								<tr>
+									<th>Image Size</th>
+									<th>640 px</th>
+								</tr>
+								<tr>
+									<th>Training Size</th>
+									<th>80%</th>
+								</tr>
+								<tr>
+									<th>Cosine Learning Rate</th>
+									<th>True</th>
+								</tr>
+								<tr>
+									<th>Workers</th>
+									<th>100</th>
+								</tr>
+								<th>Learning Rate</th>
+								<th>1e-2</th>
+							</table>
 
 
 							<h3 align="left">Prototype</h3>
@@ -152,9 +184,53 @@
 							<header>
 								<h2>Results</h2>
 							</header>
+							<h4 align="left">YOLO Object Detection Performance</h4>
+							<p align="left">Fine-tuning YOLOv8n on home-relevant classes achieved 85.4% mAP with significant noise reduction. The specialized model increased average confidence from 37.3% to 68.5% compared to the pretrained COCO dataset. By focusing on only 12 classes of common household objects instead of 80, the model eliminates false positives like surfboards and laptops that distract from assistive operations.</p>
+							<table style="border: 2px solid; border-color: #114D34;">
+								<tr style="border: 2px solid; border-color: #114D34;">
+									<th>Statistic</th>
+									<th>Value</th>
+								</tr>
+								<tr>
+									<td>Box Loss</td>
+									<td>0.8402</td>
+								</tr>
+								<tr>
+									<td>Classification Loss</td>
+									<td>0.552</td>
+								</tr>
+								<tr>
+									<td>Focal Loss (DFL)</td>
+									<td>0.9931</td>
+								</tr>
+							</table>
 
-							<p align="left">Remember to use figures to help illustrate results</p>
-
+							<table style="border: 2px solid; border-color: #114D34;">
+								<tr style="border: 2px solid; border-color: #114D34;">
+									<th>Metric</th>
+									<th>Plot</th>
+								</tr>
+								<tr >
+									<td>F1-Confidence Curve</td>
+									<td><img src="images/BoxF1_curve_1.png"></td>
+								</tr>
+								<tr>
+									<td>Precision-Confidence Curve</td>
+									<td><img src="images/BoxP_curve.png"></td>
+								</tr>
+								<tr>
+									<td>Precision-Recall Curve</td>
+									<td><img src="images/BoxPR_curve.png"></td>
+								</tr>
+								<tr>
+									<td>Recall-Confidence Curve</td>
+									<td><img src="images/BoxR_curve.png"></td>
+								</tr>
+								<tr>
+									<td>Confusion Matrix</td>
+									<td><img src="images/confusion_matrix_normalized.png"></td>
+								</tr>
+							</table>
 
 							<article class="item">
 								<a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a>
@@ -194,10 +270,10 @@
 							<div class="row">
 								<div class="4u 12u$(mobile)">
 									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a>
+										<a href="#" class="image fit"><img src="images/RS_Profile.jpeg" alt="" /></a>
 										<header>
-											<h3>Team Member</h3>
-											<p>Description and link</p>
+											<h3>Revath Sankar</h3>
+											<p>Masters candidate in Biomedical Engineering - Interested in applications of computer vision in biomedical AI.</p>
 										</header>
 									</article>
 								</div>

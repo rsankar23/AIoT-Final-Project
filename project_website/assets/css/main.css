@@ -17,6 +17,10 @@
 		font: inherit;
 		vertical-align: baseline;
 	}
+	td {
+		vertical-align: middle;
+		text-align: center;
+	}
 
 	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
 		display: block;
