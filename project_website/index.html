@@ -134,9 +134,13 @@
 							<p align="left">
 								The "YOLO" (You Only Look Once) algorithm is a prominent real-time object detection algorithm that uses a single convolutional neural network to predict bounding boxes and classify objects simultaneously. YOLO is unique in that it treats object detection as a single regression task, predicting bouding boxes and class probabilities directly from full images in one evaluation. This has made YOLO significantly faster than previous two-way detectors.
 							</p>
-							<img src = "images/yolo_v8_arch.webp">
+							<figure>
+								<img src = "images/yolo_v8_arch.webp" >
+								<figcaption>Fig.1 - YOLO Backbone, Neck, Head Architecture</figcaption>
+							</figure>
+							
 							<h5 align="left"left>Model Architecture</h5>
-							<p align="left">The YOLO model is comprised of a three-part architectured that follows a "Backbone, Neck, Head" pattern. In this architecture, the backbone serves to extract core features from the input image, the neck takes in multi-scale features from the backbone and fuses or aggregates them to create a richer feature set; often using the Feature Pyramid Network and Path Aggression Network techniques, finally, the head consumes the refined feature information from the nexk to make final predictions, generate bounding box coordinates; object confidence scores and class labels.</p>
+							<p align="left">The YOLO model is comprised of a three-part architectured that follows a "Backbone, Neck, Head" pattern. In this architecture, the backbone serves to extract core features from the input image, the neck takes in multi-scale features from the backbone and fuses or aggregates them to create a richer feature set; often using the Feature Pyramid Network and Path Aggression Network techniques, finally, the head consumes the refined feature information from the neck to make final predictions, generate bounding box coordinates; object confidence scores and class labels. The model selects the best optimizer; in this case the ADAM Optimization algorithm. Additionally, the YOLO version 8, which we are utilizing for the purposes of this experiment leverages a modified CSP Darknet architecture - with several C2F modules to reduce computational redundancy, improve gradient flow and feature reuse; the model is also anchor-free, allowing the model to directly predict bounding box properties, eliminating the need for pre-defined anchor boxes and the typical clustering process.</p>
 
 							<table style="border: 2px solid; border-color: #114D34;">
 								<tr style="border: 2px solid #114D34;">
