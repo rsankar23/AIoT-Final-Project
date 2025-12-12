@@ -20,6 +20,17 @@
 	td {
 		vertical-align: middle;
 		text-align: center;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		word-wrap: break-word;
+	}
+	.plot{
+		height: auto;
+		max-width: 80%;
+	}
+	.plots {
+		overflow-x: auto;
+		table-layout: fixed;
 	}
 
 	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
