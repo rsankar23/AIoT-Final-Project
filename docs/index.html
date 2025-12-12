@@ -137,7 +137,7 @@
 							</p>
 							<figure>
 								<img src = "images/yolo_v8_arch.webp" >
-								<figcaption>Fig.1 - YOLO Backbone, Neck, Head Architecture</figcaption>
+								<figcaption>Fig.1 - YOLO Backbone, Neck, Head Architecture [1]</figcaption>
 							</figure>
 							
 							<h5 align="left"left>Model Architecture</h5>
@@ -173,7 +173,7 @@
 							</table>
 						<hr>
 						<h5 align="left">HomeObjects-3K Dataset</h5>
-							<p align="left">The HomeObjects-3K dataset is a curated collection of indoor household object images designed specifically for training, validating, and benchmarking object detection models like YOLO. It was released by the Ultralytics team (the maintainers of YOLO) and is included as a sample dataset in the Ultralytics documentation and tools.</p>
+							<p align="left">The HomeObjects-3K dataset is a curated collection of indoor household object images designed specifically for training, validating, and benchmarking object detection models like YOLO. It was released by the Ultralytics team (the maintainers of YOLO) and is included as a sample dataset in the Ultralytics documentation and tools.[2] We chose this dataset because of our focus in assisted living environments and low-light indoor environments and identification of common household objects in those environments.</p>
 							<table style="border: 2px solid; border-color: #114D34;">
 								<tr style="border: 2px solid; border-color: #114D34;">
 									<th>Total Images</th>
@@ -273,13 +273,22 @@ ESP32-CAM --> HTTPS POST --> Cloud Run (YOLOv8) --> JSON Response
 								<h2>Results</h2>
 							</header>
 							<h4 align="left">YOLO Object Detection Performance</h4>
-							<p align="left">Fine-tuning YOLOv8n on home-relevant classes achieved 85.4% mAP with significant noise reduction. The specialized model increased average confidence from 37.3% to 68.5% compared to the pretrained COCO dataset. By focusing on only 12 classes of common household objects instead of 80, the model eliminates false positives like surfboards and laptops that distract from assistive operations.</p>
+							<p align="left">Fine-tuning YOLOv8n on home-relevant classes achieved 85.4% mAP with significant noise reduction. By focusing on only 12 classes of common household objects instead of 80, the model eliminates false positives like surfboards and laptops that distract from assistive operations.[3]</p>
 							<p align="left">$$Precision = \frac{TP}{TP + FP}$$</p>
 							<p align="left">$$Recall = \frac{TP}{TP + FN}$$</p>
-							<p align="left">$$F-1 = 2\times\frac{precision \times recall}{precision + recall}$$</p>
-							<p align="left">Below are the plots generated from the testing phase with a randomly sampled 20% of the initial dataset. The F1 Confidence Curve plots the F1 score against different confidence thresholds. A higher F1 score indicates better performance, and the confidence threshold at which the F1 score is maximized is often considered the optimal threshold for making predictions. As seen in Fig.2, the F-1 Confidence curve under the pre-trained model demonstrates a higher peak when managing the HomeObjects-3K dataset, compared to the base model @ (0.345, 0.67) for the totality of classes. We can next evaluate the Precision-Recall Curve is a plot that shows the trade-off between precision and recall for different threshold values. The area under the curve (AUC) is a measure of how well the model is able to distinguish between classes; and as expected the pretrained model not only exhibits a higher AUC, but also has a non-zero area unlike the base model; this essentially confirms that the initial training is insufficient for our task of identification and detection. The Precision-Confidence & Recall-Confidence Curve plots precision and recall respectively against different confidence thresholds. For both of these cases, we can see that the Non-Pretrained model significantly underpreformed, not exhibitng the typical or ideal behavior in either case (Recall-Confidence with trendline decreasing from top-left to bottom-right traversing along x-axis; Precision-Confidence having a trendline that exhibits an increasing trendline across the x-axis with high confidence across all precisions).</p>
-							<p align="left">On review of the summary statistics, we can see that for each of the twelve classes the measured precision (P), recall (R), mean average precision (mAP50) commonly used to evaluate the quality of object detectors, and Mean Average Precision averaged over IoU thresholds from 50% to 95% (at 5% steps), a stricter object detection evaluation metric the pretrained model consistently outperforms the base model in bounding and detection tasks. The precision and recall of the object classifications and bounding box measurements are orders of magnitude higher in the pre-trained model as compared to the non-pretrained model; this can be most easily be seen through the Confusion matrices where the non-pretrained model not only commonly misidentifies common household objects, but also misidentifies objects as background content. </p>
-
+							<p align="left">$$F1 = 2\times\frac{precision \times recall}{precision + recall}$$</p>
+							<p align="left">Below are the plots generated from the validation phase with a randomly sampled 20% of the initial dataset. The F1 Confidence Curve plots the F1 score against different confidence thresholds. A higher F1 score indicates better performance, and the confidence threshold at which the F1 score is maximized is often considered the optimal threshold for making predictions; in the pre-trained model, 0.345 for all classes, and in the case of the base model, we cannot identify such a point across any class. As seen in Fig.2, the F1 Confidence curve under the pre-trained model demonstrates a higher peak when managing the HomeObjects-3K dataset, compared to the base model @ (0.345, 0.67) for the totality of classes. We can next evaluate the Precision-Recall Curve, which is a plot that shows the trade-off between precision and recall for different threshold values. The area under the curve (AUC) is a measure of how well the model is able to distinguish between classes; and as expected the pretrained model not only exhibits a higher AUC (0.676), but also has does not exhibit a near-zero area unlike the base model (0.019); this essentially confirms that the initial training is insufficient for our task of identification and detection. The Precision-Confidence & Recall-Confidence Curve plots precision and recall respectively against different confidence thresholds. For both of these cases, we can see that the Non-Pretrained model significantly underpreformed, not exhibitng the typical or ideal behavior in either case (Recall-Confidence with trendline decreasing from top-left to bottom-right traversing along x-axis; Precision-Confidence having a trendline that exhibits an increasing precision along the x-axis with high confidence across all precisions). Similarly within the Precision-Confidence curve, many of the classes reach the ideal "1.0" threshold only after traversing several confidence levels. Displaying an opposite but parallel behavior is the Recall-Confidence curve, where the pre-trained model exhibits a smooth downward curve, the base model essentially stays flat near-zero across all relevant classes.</p>
+							<p align="left">On review of the summary statistics, we can see that for each of the twelve classes the measured precision (P), recall (R), mean average precision (mAP50) commonly used to evaluate the quality of object detectors, and Mean Average Precision averaged over IoU thresholds from 50% to 95% ( a stricter object detection evaluation metric), the pretrained model consistently outperforms the base model in bounding and detection tasks. The precision and recall of the object classifications and bounding box measurements are orders of magnitude higher in the pre-trained model as compared to the base model. This is further exemplified through the Confusion matrices where the non-pretrained model not only commonly misidentifies common household objects, but also misidentifies objects as background content.</p>
+							<table style="border: 2px solid; border-color: #114D34;">
+								<tr style="border: 2px solid; border-color: #114D34;">
+									<td>Base Model Summary Statistics</td>
+									<td><img src="images/summary_stats/Screenshot 2025-12-11 at 7.56.14 PM.png"</td>
+								</tr>
+								<tr>
+									<td>Pre-Trained Model Summary Statistics</td>
+									<td><img src="images/summary_stats/Screenshot 2025-12-11 at 7.55.50 PM.png"</td>
+								</tr>
+							</table>
 
 							<hr>
 							<ol align="left" type="I">
