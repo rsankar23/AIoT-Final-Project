@@ -199,9 +199,66 @@
 							</table>
 
 						<hr>
+						<h4 align="left">Cloud API</h4>
+							<p align="left">
+								YOLO model deployed on Google Cloud Run. Accepts JPEG via HTTPS POST. Returns JSON with detections, confidence, and bounding boxes. Latency is 150ms per inference.
+							</p>
+
+							<h5 align="left">Live Endpoint</h5>
+							<p align="left"><strong>Base URL:</strong> <code>https://uav-rescue-detection-xhp2lso5pq-uc.a.run.app</code></p>
+
+							<table style="border: 2px solid; border-color: #114D34;">
+								<tr style="border: 2px solid #114D34;">
+									<th>Endpoint</th>
+									<th>Method</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<td><code>/health</code></td>
+									<td>GET</td>
+									<td>Health check</td>
+								</tr>
+								<tr>
+									<td><code>/classes</code></td>
+									<td>GET</td>
+									<td>List detectable classes</td>
+								</tr>
+								<tr>
+									<td><code>/detect</code></td>
+									<td>POST</td>
+									<td>Run YOLO inference</td>
+								</tr>
+							</table>
+
+							<h5 align="left">Response Format</h5>
+							<pre align="left" style="background: #f4f4f4; padding: 10px; text-align: left;">
+{
+  "status": "success",
+  "person_detected": true,
+  "num_detections": 2,
+  "detections": [
+    {
+      "class": "Person",
+      "confidence": 0.9878,
+      "bbox": [120.5, 45.2, 380.1, 520.8]
+    }
+  ],
+  "latency_ms": 145.32
+}
+							</pre>
+
+							<h5 align="left">System Architecture</h5>
+							<pre align="left" style="background: #f4f4f4; padding: 10px; text-align: left;">
+ESP32-CAM --> HTTPS POST --> Cloud Run (YOLOv8) --> JSON Response
+    |                             |                      |
+  Capture                    Inference            person_detected
+  Image                      ~150ms                  true/false
+							</pre>
+
+						<hr>
 						<h3 align="left">Prototype</h3>
 
-						<p align="left">Blah blah blah</p>
+						<p align="left">ESP32-CAM captures images and sends to Cloud Run API. API returns detection results for display or alerts.</p>
 
 
 
@@ -352,8 +409,8 @@
 									<article class="item">
 										<a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a>
 										<header>
-											<h3>Team Member</h3>
-											<p>Description and link</p>
+											<h3>Dexin Huang</h3>
+											<p>dh3172@columbia.edu</p>
 										</header>
 									</article>
 								</div>
@@ -361,8 +418,8 @@
 									<article class="item">
 										<a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a>
 										<header>
-											<h3>Team Member</h3>
-											<p>Description and link</p>
+											<h3>Adib Khondoker</h3>
+											<p>aak2250@columbia.edu</p>
 										</header>
 									</article>
 								</div>
@@ -380,9 +437,9 @@
 							</header>
 
 							<p align="left">
-								<strong>Contact Name 1: Revath Sankar </strong>rs4485@columbia.edu</br>
-								<strong>Contact Name 2: </strong>email here</br>
-								<strong>Other Contact Information: </strong>other contact info</br>
+								<strong>Revath Sankar: </strong>rs4485@columbia.edu</br>
+								<strong>Dexin Huang: </strong>dh3172@columbia.edu</br>
+								<strong>Adib Khondoker: </strong>aak2250@columbia.edu</br>
 							</br>
 								<strong>Columbia University </strong><a href="http://www.ee.columbia.edu">Department of Electrical Engineering</a><br>
 								<!-- <strong>Class Website:</strong>
