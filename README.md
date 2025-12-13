@@ -1,5 +1,7 @@
 # AIoT-Final-Project
 
+## Project Report HTML is in the folder /docs -> index.html
+
 ## Group 20 - Vision Based- Mobile Assistive Detection System
 
 - Goal of the project is to develop a computer vision system for local assistive operations by utilizing computer vision to support the visually impaired in low-light or poor-visibility conditions
