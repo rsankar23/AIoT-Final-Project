@@ -121,8 +121,6 @@
 								<h2>System</h2>
 							</header>
 
-							<p align="left">Remember to use combination of descriptions, photos, and figures</p>
-
 							<h3 align="left">Architecture</h3>
 
 							<figure style="text-align: center;">
@@ -131,14 +129,12 @@
 							</figure>
 
 							<p align="left">
-							The system follows an edge-to-cloud architecture designed to 
-							support real-time assistive object detection. A Raspberry Pi equipped with a camera serves as the edge device, capturing image frames from the 
-							environment. These frames are periodically transmitted via HTTPS POST requests to a YOLOv8 inference service deployed on Google Cloud Run. 
-							The cloud service performs object detection and returns structured JSON responses containing class labels, confidence scores, and bounding box 
-							coordinates. The Raspberry Pi then uses this information to render detections on a local graphical interface, providing situational awareness to the 
-							user. While the architecture includes a flight control subsystem to illustrate a potential mobile deployment, autonomous navigation is presented as a 
-							planned extension rather than a fully implemented feature in the current prototype.
-							</p>
+The system follows an edge-to-cloud architecture designed to support real-time assistive object detection. A Raspberry Pi equipped with a camera serves as the edge device, capturing image frames from the environment. These frames are periodically transmitted via HTTPS POST requests to a YOLOv8 inference service deployed on Google Cloud Run. The cloud service performs object detection and returns structured JSON responses containing class labels, confidence scores, and bounding box coordinates.
+</p>
+
+<p align="left">
+On the edge device, detection results are processed and rendered on a local graphical interface, providing situational awareness to the user. In addition, the system architecture incorporates a flight control subsystem to demonstrate how the perception pipeline can be integrated into a mobile robotic platform. This control subsystem establishes the software and hardware interfaces required for autonomous operation and serves as a foundation for future extensions involving closed-loop navigation and motion planning.
+</p>
 
 
 							<h3 align="left">Technical Components</h3>
@@ -282,17 +278,22 @@ ESP32-CAM --> HTTPS POST --> Cloud Run (YOLOv8) --> JSON Response
 						<h4 align="left">Prototype - Sensors & Peripherals</h4>
 						
 						<p align="left">
-								For our Prototype Autonomous Drone system, the components consisted of a Raspberry PI + Cam for primary flight control and image capture, 4 Lidar Sensors, a BNO055 IMU, and a PWM breakout board on a 3rd party drone kit package
+								For our Prototype Autonomous Drone system, the components consisted of a Raspberry PI + Cam for primary flight control and image capture, 4 Lidar Sensors, a BNO055 IMU, and a PWM breakout board.
 								The goal was to utilize lidar sensors covering the drones sides to keep it from hitting into obstacles, an Adafruit BNO055 IMU to keep track of its position and how far it has traveled
 								and feed it into a PID algorithm to keep the drones flight characteristics stable. Then the onboard camera would capture images
 						</p>
 
+
 						
 				
 
-						<p align="left">
-						Autonomous mobility was explored as part of the system design; however, full autonomous flight was not completed within the project timeframe. During testing, a hardware failure resulted in a crash that prevented further validation of the autonomous control loop. As a result, the implemented prototype focuses on the vision-based detection, cloud inference, and visualization pipeline, while the flight-control subsystem is presented as planned future work.
-						</p>
+<p align="left">
+Autonomous mobility was actively developed and tested as part of the system design. During late-stage testing, a hardware failure occurred shortly before the final demonstration window, which prevented further flight validation within the project timeframe. Due to component availability and time constraints, the autonomous control loop could not be fully demonstrated.
+</p>
+
+<p align="left">
+The project therefore focuses on the validated vision-based detection, cloud inference, and visualization pipeline, while the flight-control subsystem is presented as a planned and partially implemented extension.
+</p>
 
 						<figure style="text-align: center;">
   								<img src="images/bn005imu.png" style="max-width: 90%;">
@@ -300,7 +301,7 @@ ESP32-CAM --> HTTPS POST --> Cloud Run (YOLOv8) --> JSON Response
 						</figure>
 
 						<p align="left">
-						The Adafruit BNO055 serves as the inertial sensing component of the system, providing real-time orientation and motion data. It is a 9-DOF absolute orientation sensor that integrates an accelerometer, gyroscope, and magnetometer and communicates with the raspberry pi over UART. 
+						The Adafruit BNO055 serves as the inertial sensing component of the system, providing real-time orientation and motion data. It is a 9-DOF absolute orientation sensor that integrates an accelerometer, gyroscope, and magnetometer and communicates with the raspberry pi over i2c. 
 						Within the system architecture, the BNO055 is intended to supply attitude and orientation feedback to the flight-control subsystem. In a fully autonomous configuration, this data would be combined with vision-based detections and other sensor inputs and fed into a PID control loop to stabilize motion and guide navigation. 
 						To use this sensor with the Raspberry PI, the following library must be installed using: <br> 
 
@@ -354,8 +355,7 @@ ESP32-CAM --> HTTPS POST --> Cloud Run (YOLOv8) --> JSON Response
 						(capturing frames, networking, or running application logic). 
 						The PWM generation offloaded to a dedicated controller over I2C. 
 						In our system design, this board would regulate motor thrust and enable consistent control 
-						behavior required for closed-loop stabilization. Although full autonomous flight was not completed within the project timeframe, the PWM HAT 
-						defines the intended motor-control layer for scalable, reliable actuation. <br>
+						behavior required for closed-loop stabilization.  <br>
 
 						You need to install the following libraries<br>
 

@@ -11,3 +11,37 @@
 - On a similar vein, the YOLO model requires considerable resourse in order to effectively train; thus we recommend running the notebook with access to sufficient compute resources (ie. on-prem GPU or hosted-instance)
     - Recommended Instances: (Colab T4-GPU, A100 GPU w/ High RAM option to optimize training performance)
 - The output from each model validation step should produce the F1-Confidence, Precision-Confidence, Recall-Confidence, Precision Recall and Confusion Matrix outputs; the pretrained mode validation outputs are saved under the `~val_res/` library, and the base mode validation outputs are saved under the `~no_res/` library.
+
+## Hardware Requirements
+- Raspberry Pi 4 (or newer)
+- Raspberry Pi Camera Module
+- Internet connection (for Cloud Run API access)
+- Planned
+  - Adafruit BNO055 IMU  
+  - VL53L0X LiDAR sensors  
+  - Adafruit PCA9685 16-Channel PWM HAT  
+  - ESC's
+
+---
+
+## Software Environment
+- Raspberry Pi OS (64-bit recommended)
+- Python 3.9 or newer
+
+---
+
+## Enable Raspberry Pi Interfaces
+Enable required hardware interfaces using:
+
+```bash
+sudo raspi-config
+
+pip3 install \
+  requests \
+  pillow \
+  numpy \
+  opencv-python \
+  adafruit-circuitpython-bno055 \
+  adafruit-circuitpython-vl53l0x \
+  adafruit-circuitpython-pca9685 \
+  adafruit-circuitpython-servokit
