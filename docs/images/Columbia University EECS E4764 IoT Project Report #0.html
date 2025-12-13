@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<!--
+	Prologue by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<title>Columbia University EECS E4764 IoT Project Report #0</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="Columbia%20University%20EECS%20E4764%20IoT%20Project%20Report%20%230_files/main.css">
+		<script type="text/javascript" id="MathJax-script" async="" src="Columbia%20University%20EECS%20E4764%20IoT%20Project%20Report%20%230_files/tex-mml-chtml.js">
+    	</script>
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	<style type="text/css">.CtxtMenu_InfoClose {  top:.2em; right:.2em;}
+.CtxtMenu_InfoContent {  overflow:auto; text-align:left; font-size:80%;  padding:.4em .6em; border:1px inset; margin:1em 0px;  max-height:20em; max-width:30em; background-color:#EEEEEE;  white-space:normal;}
+.CtxtMenu_Info.CtxtMenu_MousePost {outline:none;}
+.CtxtMenu_Info {  position:fixed; left:50%; width:auto; text-align:center;  border:3px outset; padding:1em 2em; background-color:#DDDDDD;  color:black;  cursor:default; font-family:message-box; font-size:120%;  font-style:normal; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 15px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius:15px;               /* Safari and Chrome */  -moz-border-radius:15px;                  /* Firefox */  -khtml-border-radius:15px;                /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */  filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true"); /* IE */}
+</style><style type="text/css">.CtxtMenu_MenuClose {  position:absolute;  cursor:pointer;  display:inline-block;  border:2px solid #AAA;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  font-family: "Courier New", Courier;  font-size:24px;  color:#F0F0F0}
+.CtxtMenu_MenuClose span {  display:block; background-color:#AAA; border:1.5px solid;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  line-height:0;  padding:8px 0 6px     /* may need to be browser-specific */}
+.CtxtMenu_MenuClose:hover {  color:white!important;  border:2px solid #CCC!important}
+.CtxtMenu_MenuClose:hover span {  background-color:#CCC!important}
+.CtxtMenu_MenuClose:hover:focus {  outline:none}
+</style><style type="text/css">.CtxtMenu_Menu {  position:absolute;  background-color:white;  color:black;  width:auto; padding:5px 0px;  border:1px solid #CCCCCC; margin:0; cursor:default;  font: menu; text-align:left; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 5px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius: 5px;             /* Safari and Chrome */  -moz-border-radius: 5px;                /* Firefox */  -khtml-border-radius: 5px;              /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */}
+.CtxtMenu_MenuItem {  padding: 1px 2em;  background:transparent;}
+.CtxtMenu_MenuArrow {  position:absolute; right:.5em; padding-top:.25em; color:#666666;  font-family: null; font-size: .75em}
+.CtxtMenu_MenuActive .CtxtMenu_MenuArrow {color:white}
+.CtxtMenu_MenuArrow.CtxtMenu_RTL {left:.5em; right:auto}
+.CtxtMenu_MenuCheck {  position:absolute; left:.7em;  font-family: null}
+.CtxtMenu_MenuCheck.CtxtMenu_RTL { right:.7em; left:auto }
+.CtxtMenu_MenuRadioCheck {  position:absolute; left: .7em;}
+.CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {  right: .7em; left:auto}
+.CtxtMenu_MenuInputBox {  padding-left: 1em; right:.5em; color:#666666;  font-family: null;}
+.CtxtMenu_MenuInputBox.CtxtMenu_RTL {  left: .1em;}
+.CtxtMenu_MenuComboBox {  left:.1em; padding-bottom:.5em;}
+.CtxtMenu_MenuSlider {  left: .1em;}
+.CtxtMenu_SliderValue {  position:absolute; right:.1em; padding-top:.25em; color:#333333;  font-size: .75em}
+.CtxtMenu_SliderBar {  outline: none; background: #d3d3d3}
+.CtxtMenu_MenuLabel {  padding: 1px 2em 3px 1.33em;  font-style:italic}
+.CtxtMenu_MenuRule {  border-top: 1px solid #DDDDDD;  margin: 4px 3px;}
+.CtxtMenu_MenuDisabled {  color:GrayText}
+.CtxtMenu_MenuActive {  background-color: #606872;  color: white;}
+.CtxtMenu_MenuDisabled:focus {  background-color: #E8E8E8}
+.CtxtMenu_MenuLabel:focus {  background-color: #E8E8E8}
+.CtxtMenu_ContextMenu:focus {  outline:none}
+.CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {  outline:none}
+.CtxtMenu_SelectionMenu {  position:relative; float:left;  border-bottom: none; -webkit-box-shadow:none; -webkit-border-radius:0px; }
+.CtxtMenu_SelectionItem {  padding-right: 1em;}
+.CtxtMenu_Selection {  right: 40%; width:50%; }
+.CtxtMenu_SelectionBox {  padding: 0em; max-height:20em; max-width: none;  background-color:#FFFFFF;}
+.CtxtMenu_SelectionDivider {  clear: both; border-top: 2px solid #000000;}
+.CtxtMenu_Menu .CtxtMenu_MenuClose {  top:-10px; left:-10px}
+</style><style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-math {
+  display: inline-block;
+  text-align: left;
+  line-height: 0;
+  text-indent: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 100%;
+  font-size-adjust: none;
+  letter-spacing: normal;
+  border-collapse: collapse;
+  word-wrap: normal;
+  word-spacing: normal;
+  white-space: nowrap;
+  direction: ltr;
+  padding: 1px 0;
+}
+
+mjx-container[jax="CHTML"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="CHTML"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="CHTML"][display="true"] mjx-math {
+  padding: 0;
+}
+
+mjx-container[jax="CHTML"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="CHTML"][justify="right"] {
+  text-align: right;
+}
+
+mjx-mi {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-c {
+  display: inline-block;
+}
+
+mjx-utext {
+  display: inline-block;
+  padding: .75em 0 .2em 0;
+}
+
+mjx-mo {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-stretchy-h {
+  display: inline-table;
+  width: 100%;
+}
+
+mjx-stretchy-h > * {
+  display: table-cell;
+  width: 0;
+}
+
+mjx-stretchy-h > * > mjx-c {
+  display: inline-block;
+  transform: scalex(1.0000001);
+}
+
+mjx-stretchy-h > * > mjx-c::before {
+  display: inline-block;
+  width: initial;
+}
+
+mjx-stretchy-h > mjx-ext {
+  /* IE */ overflow: hidden;
+  /* others */ overflow: clip visible;
+  width: 100%;
+}
+
+mjx-stretchy-h > mjx-ext > mjx-c::before {
+  transform: scalex(500);
+}
+
+mjx-stretchy-h > mjx-ext > mjx-c {
+  width: 0;
+}
+
+mjx-stretchy-h > mjx-beg > mjx-c {
+  margin-right: -.1em;
+}
+
+mjx-stretchy-h > mjx-end > mjx-c {
+  margin-left: -.1em;
+}
+
+mjx-stretchy-v {
+  display: inline-block;
+}
+
+mjx-stretchy-v > * {
+  display: block;
+}
+
+mjx-stretchy-v > mjx-beg {
+  height: 0;
+}
+
+mjx-stretchy-v > mjx-end > mjx-c {
+  display: block;
+}
+
+mjx-stretchy-v > * > mjx-c {
+  transform: scaley(1.0000001);
+  transform-origin: left center;
+  overflow: hidden;
+}
+
+mjx-stretchy-v > mjx-ext {
+  display: block;
+  height: 100%;
+  box-sizing: border-box;
+  border: 0px solid transparent;
+  /* IE */ overflow: hidden;
+  /* others */ overflow: visible clip;
+}
+
+mjx-stretchy-v > mjx-ext > mjx-c::before {
+  width: initial;
+  box-sizing: border-box;
+}
+
+mjx-stretchy-v > mjx-ext > mjx-c {
+  transform: scaleY(500) translateY(.075em);
+  overflow: visible;
+}
+
+mjx-mark {
+  display: inline-block;
+  height: 0px;
+}
+
+mjx-mfrac {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-frac {
+  display: inline-block;
+  vertical-align: 0.17em;
+  padding: 0 .22em;
+}
+
+mjx-frac[type="d"] {
+  vertical-align: .04em;
+}
+
+mjx-frac[delims] {
+  padding: 0 .1em;
+}
+
+mjx-frac[atop] {
+  padding: 0 .12em;
+}
+
+mjx-frac[atop][delims] {
+  padding: 0;
+}
+
+mjx-dtable {
+  display: inline-table;
+  width: 100%;
+}
+
+mjx-dtable > * {
+  font-size: 2000%;
+}
+
+mjx-dbox {
+  display: block;
+  font-size: 5%;
+}
+
+mjx-num {
+  display: block;
+  text-align: center;
+}
+
+mjx-den {
+  display: block;
+  text-align: center;
+}
+
+mjx-mfrac[bevelled] > mjx-num {
+  display: inline-block;
+}
+
+mjx-mfrac[bevelled] > mjx-den {
+  display: inline-block;
+}
+
+mjx-den[align="right"], mjx-num[align="right"] {
+  text-align: right;
+}
+
+mjx-den[align="left"], mjx-num[align="left"] {
+  text-align: left;
+}
+
+mjx-nstrut {
+  display: inline-block;
+  height: .054em;
+  width: 0;
+  vertical-align: -.054em;
+}
+
+mjx-nstrut[type="d"] {
+  height: .217em;
+  vertical-align: -.217em;
+}
+
+mjx-dstrut {
+  display: inline-block;
+  height: .505em;
+  width: 0;
+}
+
+mjx-dstrut[type="d"] {
+  height: .726em;
+}
+
+mjx-line {
+  display: block;
+  box-sizing: border-box;
+  min-height: 1px;
+  height: .06em;
+  border-top: .06em solid;
+  margin: .06em -.1em;
+  overflow: hidden;
+}
+
+mjx-line[type="d"] {
+  margin: .18em -.1em;
+}
+
+mjx-mrow {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-mn {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+
+mjx-c.mjx-c1D443.TEX-I::before {
+  padding: 0.683em 0.751em 0 0;
+  content: "P";
+}
+
+mjx-c.mjx-c1D45F.TEX-I::before {
+  padding: 0.442em 0.451em 0.011em 0;
+  content: "r";
+}
+
+mjx-c.mjx-c1D452.TEX-I::before {
+  padding: 0.442em 0.466em 0.011em 0;
+  content: "e";
+}
+
+mjx-c.mjx-c1D450.TEX-I::before {
+  padding: 0.442em 0.433em 0.011em 0;
+  content: "c";
+}
+
+mjx-c.mjx-c1D456.TEX-I::before {
+  padding: 0.661em 0.345em 0.011em 0;
+  content: "i";
+}
+
+mjx-c.mjx-c1D460.TEX-I::before {
+  padding: 0.442em 0.469em 0.01em 0;
+  content: "s";
+}
+
+mjx-c.mjx-c1D45C.TEX-I::before {
+  padding: 0.441em 0.485em 0.011em 0;
+  content: "o";
+}
+
+mjx-c.mjx-c1D45B.TEX-I::before {
+  padding: 0.442em 0.6em 0.011em 0;
+  content: "n";
+}
+
+mjx-c.mjx-c3D::before {
+  padding: 0.583em 0.778em 0.082em 0;
+  content: "=";
+}
+
+mjx-c.mjx-c1D447.TEX-I::before {
+  padding: 0.677em 0.704em 0 0;
+  content: "T";
+}
+
+mjx-c.mjx-c2B::before {
+  padding: 0.583em 0.778em 0.082em 0;
+  content: "+";
+}
+
+mjx-c.mjx-c1D439.TEX-I::before {
+  padding: 0.68em 0.749em 0 0;
+  content: "F";
+}
+
+mjx-c.mjx-c1D445.TEX-I::before {
+  padding: 0.683em 0.759em 0.021em 0;
+  content: "R";
+}
+
+mjx-c.mjx-c1D44E.TEX-I::before {
+  padding: 0.441em 0.529em 0.01em 0;
+  content: "a";
+}
+
+mjx-c.mjx-c1D459.TEX-I::before {
+  padding: 0.694em 0.298em 0.011em 0;
+  content: "l";
+}
+
+mjx-c.mjx-c1D441.TEX-I::before {
+  padding: 0.683em 0.888em 0 0;
+  content: "N";
+}
+
+mjx-c.mjx-c31::before {
+  padding: 0.666em 0.5em 0 0;
+  content: "1";
+}
+
+mjx-c.mjx-c32::before {
+  padding: 0.666em 0.5em 0 0;
+  content: "2";
+}
+
+mjx-c.mjx-cD7::before {
+  padding: 0.491em 0.778em 0 0;
+  content: "\D7";
+}
+
+mjx-c.mjx-c1D45D.TEX-I::before {
+  padding: 0.442em 0.503em 0.194em 0;
+  content: "p";
+}
+</style></head>
+	<body class="">
+
+		<!-- Header -->
+			<div id="header">
+
+				<div class="top">
+
+					<!-- Logo -->
+						<div id="logo">
+							<!-- <span class="image avatar48"><img src="images/avatar.jpg" alt="" /></span> -->
+							<h1 id="title">Vision Based Mobile Assistive Detection System</h1>
+							<p>Columbia University <br>
+								EECS E4764 Fall'25 <br>
+								Artificial Intelligence of Things<br>
+								Team 20 Project Report
+							</p>
+						</div>
+
+					<!-- Nav -->
+						<nav id="nav">
+							<!--
+
+								Prologue's nav expects links in one of two formats:
+
+								1. Hash link (scrolls to a different section within the page)
+
+								   <li><a href="#foobar" id="foobar-link" class="icon fa-whatever-icon-you-want skel-layers-ignoreHref"><span class="label">Foobar</span></a></li>
+
+								2. Standard link (sends the user to another page/site)
+
+								   <li><a href="http://foobar.tld" id="foobar-link" class="icon fa-whatever-icon-you-want"><span class="label">Foobar</span></a></li>
+
+							-->
+							<ul>
+								<li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Abstract</span></a></li>
+								<li><a href="#motivation" id="motivation-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Motivation</span></a></li>
+								<li><a href="#system" id="system-link" class="skel-layers-ignoreHref active"><span class="icon fa-th">System</span></a></li>
+								<li><a href="#results" id="results-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Results</span></a></li>
+								<li><a href="#references" id="references-link" class="skel-layers-ignoreHref"><span class="icon fa-th">References</span></a></li>
+								<li><a href="#team" id="team-link" class="skel-layers-ignoreHref"><span class="icon fa-user">Our Team</span></a></li>
+								<li><a href="#contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope">Contact</span></a></li>
+							</ul>
+						</nav>
+
+				</div>
+
+				<div class="bottom">
+
+					<!-- Social Icons -->
+						<ul class="icons">
+							<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+							<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+							<li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+
+				</div>
+
+			</div>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- Intro -->
+					<section id="top" class="one dark cover">
+						<div class="container">
+
+								<iframe width="560" height="315" src="tps://youtu.be/6xA6abjEwww" frameborder="0" allowfullscreen=""></iframe>
+
+								<h2 class="alt">Vision Based Mobile Assistive Detection System</h2>
+								<p>Group 20 - Adib Khondoker, Dexin Huang, Revath Sankar</p>
+								
+
+
+							<footer>
+								<a href="#motivation" class="button scrolly">Motivation</a>
+							</footer>
+
+						</div>
+					</section>
+
+				<!-- Portfolio -->
+					<section id="motivation" class="two">
+						<div class="container">
+
+							<header>
+								<h2>Motivation</h2>
+							</header>
+							<ul>
+								<li>Goal of the project is to develop a computer vision system 
+for local assistive operations by utilizing computer vision to support 
+the visually impaired in low-light or poor-visibility conditions</li>
+								<li>Use onboard detection hardware to locate other individuals 
+and objects and relay their positions to a GUI on a laptop/mobile device
+ for the user</li>
+							</ul>
+						</div>
+					</section>
+
+
+					<section id="system" class="three">
+						<div class="container">
+
+							<header>
+								<h2>System</h2>
+							</header>
+
+							<p align="left">Remember to use combination of descriptions, photos, and figures</p>
+
+							<h3 align="left">Architecture</h3>
+
+							<figure style="text-align: center;">
+  								<img src="Columbia%20University%20EECS%20E4764%20IoT%20Project%20Report%20%230_files/sys_arch.png" style="max-width: 90%;">
+  								<figcaption>Fig.0 – System Architecture</figcaption>
+							</figure>
+
+							<p align="left">
+							The system follows an edge-to-cloud architecture designed to 
+							support real-time assistive object detection. A Raspberry Pi 
+equipped with a camera serves as the edge device, capturing image frames
+ from the 
+							environment. These frames are periodically transmitted via HTTPS 
+POST requests to a YOLOv8 inference service deployed on Google Cloud 
+Run. 
+							The cloud service performs object detection and returns 
+structured JSON responses containing class labels, confidence scores, 
+and bounding box 
+							coordinates. The Raspberry Pi then uses this information to 
+render detections on a local graphical interface, providing situational 
+awareness to the 
+							user. While the architecture includes a flight control subsystem 
+to illustrate a potential mobile deployment, autonomous navigation is 
+presented as a 
+							planned extension rather than a fully implemented feature in the 
+current prototype.
+							</p>
+
+
+							<h3 align="left">Technical Components</h3>
+
+
+							<h4 align="left">Real-Time Vision Algorithm</h4>
+							<p align="left">
+								The "YOLO" (You Only Look Once) algorithm is a prominent 
+real-time object detection algorithm that uses a single convolutional 
+neural network to predict bounding boxes and classify objects 
+simultaneously. YOLO is unique in that it treats object detection as a 
+single regression task, predicting bouding boxes and class probabilities
+ directly from full images in one evaluation. This has made YOLO 
+significantly faster than previous two-way detectors.
+							</p>
+							<figure>
+								<img src="Columbia%20University%20EECS%20E4764%20IoT%20Project%20Report%20%230_files/yolo_v8_arch.webp">
+								<figcaption>Fig.1 - YOLO Backbone, Neck, Head Architecture [1]</figcaption>
+							</figure>
+							
+							<h5 align="left" left="">Model Architecture</h5>
+							<p align="left">The YOLO model is comprised of a three-part 
+architectured that follows a "Backbone, Neck, Head" pattern. In this 
+architecture, the backbone serves to extract core features from the 
+input image, the neck takes in multi-scale features from the backbone 
+and fuses or aggregates them to create a richer feature set; often using
+ the Feature Pyramid Network and Path Aggression Network techniques, 
+finally, the head consumes the refined feature information from the neck
+ to make final predictions, generate bounding box coordinates; object 
+confidence scores and class labels. The model selects the best 
+optimizer; in this case the ADAM Optimization algorithm. Additionally, 
+the YOLO version 8, which we are utilizing for the purposes of this 
+experiment leverages a modified CSP Darknet architecture - with several 
+C2F modules to reduce computational redundancy, improve gradient flow 
+and feature reuse; the model is also anchor-free, allowing the model to 
+directly predict bounding box properties, eliminating the need for 
+pre-defined anchor boxes and the typical clustering process.</p>
+
+							<table style="border: 2px solid; border-color: #114D34;">
+								<tbody><tr style="border: 2px solid #114D34;">
+									<th><strong>Parameter</strong></th>
+									<th><b>Value</b></th>
+								</tr>
+								<tr>
+									<th>Training Epochs</th>
+									<th>100</th>
+								</tr>
+								<tr>
+									<th>Image Size</th>
+									<th>640 px</th>
+								</tr>
+								<tr>
+									<th>Training Size</th>
+									<th>80%</th>
+								</tr>
+								<tr>
+									<th>Cosine Learning Rate</th>
+									<th>True</th>
+								</tr>
+								<tr>
+									<th>Workers</th>
+									<th>100</th>
+								</tr>
+								<tr><th>Learning Rate</th>
+								<th>1e-2</th>
+							</tr></tbody></table>
+						<hr>
+						<h5 align="left">HomeObjects-3K Dataset</h5>
+							<p align="left">The HomeObjects-3K dataset is a curated 
+collection of indoor household object images designed specifically for 
+training, validating, and benchmarking object detection models like 
+YOLO. It was released by the Ultralytics team (the maintainers of YOLO) 
+and is included as a sample dataset in the Ultralytics documentation and
+ tools.[2] We chose this dataset because of our focus in assisted living
+ environments and low-light indoor environments and identification of 
+common household objects in those environments.</p>
+							<table style="border: 2px solid; border-color: #114D34;">
+								<tbody><tr style="border: 2px solid; border-color: #114D34;">
+									<th>Total Images</th>
+									<th>Training Set Size</th>
+									<th>Validation Set Size</th>
+								</tr>
+								<tr>
+									<td>~3,000</td>
+									<td>2,285</td>
+									<td>404</td>
+								</tr>
+							</tbody></table>
+
+							<table>
+								<tbody><tr>
+									<th>True Label</th>
+									<th>Predictions</th>
+								</tr>
+								<tr>
+									<td><img src="Columbia%20University%20EECS%20E4764%20IoT%20Project%20Report%20%230_files/val_batch0_labels.jpg" class="plot"></td>
+									<td><img src="Columbia%20University%20EECS%20E4764%20IoT%20Project%20Report%20%230_files/val_batch0_pred.jpg" class="plot"></td>
+								</tr>
+							</tbody></table>
+
+						<hr>
+						<h4 align="left">Cloud API</h4>
+							<p align="left">
+								YOLO model deployed on Google Cloud Run. Accepts JPEG via HTTPS 
+POST. Returns JSON with detections, confidence, and bounding boxes. 
+Latency is 150ms per inference.
+							</p>
+
+							<h5 align="left">Live Endpoint</h5>
+							<p align="left"><strong>Base URL:</strong> <code>https://uav-rescue-detection-xhp2lso5pq-uc.a.run.app</code></p>
+
+							<table style="border: 2px solid; border-color: #114D34;">
+								<tbody><tr style="border: 2px solid #114D34;">
+									<th>Endpoint</th>
+									<th>Method</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<td><code>/health</code></td>
+									<td>GET</td>
+									<td>Health check</td>
+								</tr>
+								<tr>
+									<td><code>/classes</code></td>
+									<td>GET</td>
+									<td>List detectable classes</td>
+								</tr>
+								<tr>
+									<td><code>/detect</code></td>
+									<td>POST</td>
+									<td>Run YOLO inference</td>
+								</tr>
+							</tbody></table>
+
+							<h5 align="left">Response Format</h5>
+							<pre align="left" style="background: #f4f4f4; padding: 10px; text-align: left;">{
+  "status": "success",
+  "person_detected": true,
+  "num_detections": 2,
+  "detections": [
+    {
+      "class": "Person",
+      "confidence": 0.9878,
+      "bbox": [120.5, 45.2, 380.1, 520.8]
+    }
+  ],
+  "latency_ms": 145.32
+}
+							</pre>
+
+							<h5 align="left">System Architecture</h5>
+							<pre align="left" style="background: #f4f4f4; padding: 10px; text-align: left;">ESP32-CAM --&gt; HTTPS POST --&gt; Cloud Run (YOLOv8) --&gt; JSON Response
+    |                             |                      |
+  Capture                    Inference            person_detected
+  Image                      ~150ms                  true/false
+							</pre>
+
+						<hr>
+						<h3 align="left">Prototype</h3>
+
+						<p align="left">ESP32-CAM captures images and sends to Cloud Run API. API returns detection results for display or alerts.</p>
+
+						
+						
+						<p align="left">
+								For our Prototype Autonomous Drone system, the components 
+consisted of a Raspberry PI + Cam for primary flight control and image 
+capture, 4 Lidar Sensors, a BNO055 IMU, and a PWM breakout board on a 
+3rd party drone kit package
+								The goal was to utilize lidar sensors covering the drones sides 
+to keep it from hitting into obstacles, an Adafruit BNO055 IMU to keep 
+track of its position and how far it has traveled
+								and feed it into a PID algorithm to keep the drones flight 
+characteristics stable. Then the onboard camera would capture images
+						</p>
+
+						
+							<figure style="text-align: center;">
+  								<img src="Columbia%20University%20EECS%20E4764%20IoT%20Project%20Report%20%230_files/bn005imu.png" style="max-width: 90%;">
+  								<figcaption>Fig.0 – System Architecture</figcaption>
+							</figure>
+
+						<p align="left">
+						Autonomous mobility was explored as part of the system design; 
+however, full autonomous flight was not completed within the project 
+timeframe. During testing, a hardware failure resulted in a crash that 
+prevented further validation of the autonomous control loop. As a 
+result, the implemented prototype focuses on the vision-based detection,
+ cloud inference, and visualization pipeline, while the flight-control 
+subsystem is presented as planned future work.
+						</p>
+
+
+						</div>
+					</section>
+
+
+					<section id="results" class="two">
+						<div class="container">
+
+							<header>
+								<h2>Results</h2>
+							</header>
+							<h4 align="left">YOLO Object Detection Performance</h4>
+							<p align="left">Fine-tuning YOLOv8n on home-relevant classes 
+achieved 85.4% mAP with significant noise reduction. By focusing on only
+ 12 classes of common household objects instead of 80, the model 
+eliminates false positives like surfboards and laptops that distract 
+from assistive operations.[3]</p>
+							<p align="left"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" style="font-size: 110%; position: relative;" display="true" tabindex="0" ctxtmenu_counter="0"><mjx-math display="true" style="margin-left: 0px; margin-right: 0px;" class="MJX-TEX" aria-hidden="true"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D443 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45F TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D452 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D450 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D460 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45C TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45B TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mfrac space="4"><mjx-frac type="d"><mjx-num><mjx-nstrut type="d"></mjx-nstrut><mjx-mrow><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D447 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D443 TEX-I"></mjx-c></mjx-mi></mjx-mrow></mjx-num><mjx-dbox><mjx-dtable><mjx-line type="d"></mjx-line><mjx-row><mjx-den><mjx-dstrut type="d"></mjx-dstrut><mjx-mrow><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D447 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D443 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="3"><mjx-c class="mjx-c1D439 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D443 TEX-I"></mjx-c></mjx-mi></mjx-mrow></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac></mjx-math><mjx-assistive-mml unselectable="on" display="block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mi>P</mi><mi>r</mi><mi>e</mi><mi>c</mi><mi>i</mi><mi>s</mi><mi>i</mi><mi>o</mi><mi>n</mi><mo>=</mo><mfrac><mrow><mi>T</mi><mi>P</mi></mrow><mrow><mi>T</mi><mi>P</mi><mo>+</mo><mi>F</mi><mi>P</mi></mrow></mfrac></math></mjx-assistive-mml></mjx-container></p>
+							<p align="left"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" style="font-size: 110%; position: relative;" display="true" tabindex="0" ctxtmenu_counter="1"><mjx-math display="true" style="margin-left: 0px; margin-right: 0px;" class="MJX-TEX" aria-hidden="true"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D445 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D452 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D450 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D459 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D459 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mfrac space="4"><mjx-frac type="d"><mjx-num><mjx-nstrut type="d"></mjx-nstrut><mjx-mrow><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D447 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D443 TEX-I"></mjx-c></mjx-mi></mjx-mrow></mjx-num><mjx-dbox><mjx-dtable><mjx-line type="d"></mjx-line><mjx-row><mjx-den><mjx-dstrut type="d"></mjx-dstrut><mjx-mrow><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D447 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D443 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="3"><mjx-c class="mjx-c1D439 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D441 TEX-I"></mjx-c></mjx-mi></mjx-mrow></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac></mjx-math><mjx-assistive-mml unselectable="on" display="block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mi>R</mi><mi>e</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>l</mi><mo>=</mo><mfrac><mrow><mi>T</mi><mi>P</mi></mrow><mrow><mi>T</mi><mi>P</mi><mo>+</mo><mi>F</mi><mi>N</mi></mrow></mfrac></math></mjx-assistive-mml></mjx-container></p>
+							<p align="left"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" style="font-size: 110%; position: relative;" display="true" tabindex="0" ctxtmenu_counter="2"><mjx-math display="true" style="margin-left: 0px; margin-right: 0px;" class="MJX-TEX" aria-hidden="true"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D439 TEX-I"></mjx-c></mjx-mi><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c32"></mjx-c></mjx-mn><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-cD7"></mjx-c></mjx-mo><mjx-mfrac space="3"><mjx-frac type="d"><mjx-num><mjx-nstrut type="d"></mjx-nstrut><mjx-mrow><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45D TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45F TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D452 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D450 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D460 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45C TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45B TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-cD7"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="3"><mjx-c class="mjx-c1D45F TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D452 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D450 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D459 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D459 TEX-I"></mjx-c></mjx-mi></mjx-mrow></mjx-num><mjx-dbox><mjx-dtable><mjx-line type="d"></mjx-line><mjx-row><mjx-den><mjx-dstrut type="d"></mjx-dstrut><mjx-mrow><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45D TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45F TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D452 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D450 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D460 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45C TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45B TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="3"><mjx-c class="mjx-c1D45F TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D452 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D450 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D44E TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D459 TEX-I"></mjx-c></mjx-mi><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D459 TEX-I"></mjx-c></mjx-mi></mjx-mrow></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac></mjx-math><mjx-assistive-mml unselectable="on" display="block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mi>F</mi><mn>1</mn><mo>=</mo><mn>2</mn><mo>×</mo><mfrac><mrow><mi>p</mi><mi>r</mi><mi>e</mi><mi>c</mi><mi>i</mi><mi>s</mi><mi>i</mi><mi>o</mi><mi>n</mi><mo>×</mo><mi>r</mi><mi>e</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>l</mi></mrow><mrow><mi>p</mi><mi>r</mi><mi>e</mi><mi>c</mi><mi>i</mi><mi>s</mi><mi>i</mi><mi>o</mi><mi>n</mi><mo>+</mo><mi>r</mi><mi>e</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>l</mi></mrow></mfrac></math></mjx-assistive-mml></mjx-container></p>
+							<p align="left">Below are the plots generated from the validation
+ phase with a randomly sampled 20% of the initial dataset. The F1 
+Confidence Curve plots the F1 score against different confidence 
+thresholds. A higher F1 score indicates better performance, and the 
+confidence threshold at which the F1 score is maximized is often 
+considered the optimal threshold for making predictions; in the 
+pre-trained model, 0.345 for all classes, and in the case of the base 
+model, we cannot identify such a point across any class. As seen in 
+Fig.2, the F1 Confidence curve under the pre-trained model demonstrates a
+ higher peak when managing the HomeObjects-3K dataset, compared to the 
+base model @ (0.345, 0.67) for the totality of classes. We can next 
+evaluate the Precision-Recall Curve, which is a plot that shows the 
+trade-off between precision and recall for different threshold values. 
+The area under the curve (AUC) is a measure of how well the model is 
+able to distinguish between classes; and as expected the pretrained 
+model not only exhibits a higher AUC (0.676), but also has does not 
+exhibit a near-zero area unlike the base model (0.019); this essentially
+ confirms that the initial training is insufficient for our task of 
+identification and detection. The Precision-Confidence &amp; 
+Recall-Confidence Curve plots precision and recall respectively against 
+different confidence thresholds. For both of these cases, we can see 
+that the Non-Pretrained model significantly underpreformed, not 
+exhibitng the typical or ideal behavior in either case 
+(Recall-Confidence with trendline decreasing from top-left to 
+bottom-right traversing along x-axis; Precision-Confidence having a 
+trendline that exhibits an increasing precision along the x-axis with 
+high confidence across all precisions). Similarly within the 
+Precision-Confidence curve, many of the classes reach the ideal "1.0" 
+threshold only after traversing several confidence levels. Displaying an
+ opposite but parallel behavior is the Recall-Confidence curve, where 
+the pre-trained model exhibits a smooth downward curve, the base model 
+essentially stays flat near-zero across all relevant classes.</p>
+							<p align="left">On review of the summary statistics, we can see 
+that for each of the twelve classes the measured precision (P), recall 
+(R), mean average precision (mAP50) commonly used to evaluate the 
+quality of object detectors, and Mean Average Precision averaged over 
+IoU thresholds from 50% to 95% ( a stricter object detection evaluation 
+metric), the pretrained model consistently outperforms the base model in
+ bounding and detection tasks. The precision and recall of the object 
+classifications and bounding box measurements are orders of magnitude 
+higher in the pre-trained model as compared to the base model. This is 
+further exemplified through the Confusion matrices where the 
+non-pretrained model not only commonly misidentifies common household 
+objects, but also misidentifies objects as background content.</p>
+							<table style="border: 2px solid; border-color: #114D34;">
+								<tbody><tr style="border: 2px solid; border-color: #114D34;">
+									<td>Base Model Summary Statistics</td>
+									<td><img src="Columbia%20University%20EECS%20E4764%20IoT%20Project%20Report%20%230_files/Screenshot%202025-12-11%20at%207.56.14%20PM.png" <="" td="">
+								</td></tr>
+								<tr>
+									<td>Pre-Trained Model Summary Statistics</td>
+									<td><img src="Columbia%20University%20EECS%20E4764%20IoT%20Project%20Report%20%230_files/Screenshot%202025-12-11%20at%207.55.50%20PM.png" <="" td="">
+								</td></tr>
+							</tbody></table>
+
+							<hr>
+							<ol align="left" type="I">
+								<li>True Positives (TP): The cases in which the model correctly predicted the positive class.</li>
+								<li>True Negatives (TN): The cases in which the model correctly predicted the negative class.</li>
+								<li> Positives (FP): The cases in which the model incorrectly predicted the positive class (a "false alarm").</li>
+								<li>False Negatives (FN): The cases in which the model failed to predict the positive class (a "miss").</li>
+							</ol>
+
+							<hr>
+							<table style="border: 2px solid; border-color: #114D34;">
+								<tbody><tr style="border: 2px solid; border-color: #114D34;">
+									<th>Training Statistic</th>
+									<th>Value</th>
+								</tr>
+								<tr>
+									<td>Box Loss</td>
+									<td>0.8619</td>
+								</tr>
+								<tr>
+									<td>Classification Loss</td>
+									<td>0.5749</td>
+								</tr>
+								<tr>
+									<td>Focal Loss (DFL)</td>
+									<td>1.004</td>
+								</tr>
+							</tbody></table>
+							<figure>
+							<table style="border: 2px solid; border-color: #114D34;" class="plots">
+								<tbody><tr style="border: 2px solid; border-color: #114D34;">
+									<th>Metric</th>
+									<th>Non-Pretrained Model Plot</th>
+									<th>Pretrained Model Plot</th>
+								</tr>
+								<tr>
+									<td>F1-Confidence Curve</td>
+									<td><img src="Columbia%20University%20EECS%20E4764%20IoT%20Project%20Report%20%230_files/BoxF1_curve.png" class="plot"></td>
+									<td><img src="Columbia%20University%20EECS%20E4764%20IoT%20Project%20Report%20%230_files/BoxF1_curve_1.png" class="plot"></td>
+								</tr>
+								<tr>
+									<td>Precision-Confidence Curve</td>
+									<td><img src="Columbia%20University%20EECS%20E4764%20IoT%20Project%20Report%20%230_files/BoxP_curve.png" class="plot"></td>
+									<td><img src="Columbia%20University%20EECS%20E4764%20IoT%20Project%20Report%20%230_files/BoxP_curve_002.png" class="plot"></td>
+								</tr>
+								<tr>
+									<td>Precision-Recall Curve</td>
+									<td><img src="Columbia%20University%20EECS%20E4764%20IoT%20Project%20Report%20%230_files/BoxPR_curve.png" class="plot"></td>
+									<td><img src="Columbia%20University%20EECS%20E4764%20IoT%20Project%20Report%20%230_files/BoxPR_curve_002.png" class="plot"></td>
+								</tr>
+								<tr>
+									<td>Recall-Confidence Curve</td>
+									<td><img src="Columbia%20University%20EECS%20E4764%20IoT%20Project%20Report%20%230_files/BoxR_curve.png" class="plot"></td>
+									<td><img src="Columbia%20University%20EECS%20E4764%20IoT%20Project%20Report%20%230_files/BoxR_curve_002.png" class="plot"></td>
+								</tr>
+								<tr>
+									<td>Confusion Matrix</td>
+									<td><img src="Columbia%20University%20EECS%20E4764%20IoT%20Project%20Report%20%230_files/confusion_matrix_normalized_002.png" class="plot"></td>
+									<td><img src="Columbia%20University%20EECS%20E4764%20IoT%20Project%20Report%20%230_files/confusion_matrix_normalized.png" class="plot"></td>
+								</tr>
+							</tbody></table>
+							<figcaption>Figure 2 - Validation Set Performance for Non-Pretrainefd and Pretrained YOLOv8 Models on HomeObjects-3K dataset</figcaption>
+							</figure>
+							<article class="item">
+								<a href="#" class="image fit"><img src="Columbia%20University%20EECS%20E4764%20IoT%20Project%20Report%20%230_files/pic06.jpg" alt=""></a>
+								<header>
+									<h3>Caption</h3>
+								</header>
+							</article>
+
+
+						</div>
+					</section>
+
+					<section id="references" class="three">
+						<div class="container">
+
+							<header>
+								<h2>References</h2>
+							</header>
+							<ol>
+								<li>
+									<blockquote cite="https://viso.ai/deep-learning/yolov8-guide/">
+									<p>Boesch, Gaudenz. “Explore Yolov8: Latest in Object Detection
+ Tech.” Viso.Ai, viso.ai, 4 Apr. 2025, 
+viso.ai/deep-learning/yolov8-guide/. </p>
+									</blockquote>
+								</li>
+								<li>
+									<blockquote cite="https://docs.ultralytics.com/datasets/detect/homeobjects-3k/">
+									<p>Ultralytics. “HomeObjects-3K Dataset.” Ultralytics YOLO 
+Docs, 16 Nov. 2025, 
+docs.ultralytics.com/datasets/detect/homeobjects-3k/. </p>
+									</blockquote>
+								</li>
+								<li>
+									<blockquote cite="https://docs.ultralytics.com/models/yolov8/">
+									<p>Ultralytics. “Explore Ultralytics Yolov8.” Ultralytics YOLO Docs, 28 Oct. 2025, docs.ultralytics.com/models/yolov8/. </p>
+									</blockquote>
+								</li>
+							</ol>
+							
+
+						</div>
+					</section>
+
+
+				<!-- About Me -->
+					<section id="team" class="two">
+						<div class="container">
+
+							<header>
+								<h2>Our Team</h2>
+							</header>
+
+							<!-- <a href="#" class="image featured"><img src="images/pic08.jpg" alt="" /></a> -->
+
+
+							<div class="row">
+								<div class="4u 12u$(mobile)">
+									<article class="item">
+										<a href="#" class="image fit"><img src="Columbia%20University%20EECS%20E4764%20IoT%20Project%20Report%20%230_files/RS_Profile.jpeg" alt=""></a>
+										<header>
+											<h3>Revath Sankar</h3>
+											<p>Masters candidate in Biomedical Engineering - Interested in applications of computer vision in biomedical AI.</p>
+											<a href="https://www.linkedin.com/in/revath-sankar/">LinkedIn</a>
+										</header>
+									</article>
+								</div>
+								<div class="4u 12u$(mobile)">
+									<article class="item">
+										<a href="#" class="image fit"><img src="Columbia%20University%20EECS%20E4764%20IoT%20Project%20Report%20%230_files/pic07.jpg" alt=""></a>
+										<header>
+											<h3>Dexin Huang</h3>
+											<p>dh3172@columbia.edu</p>
+										</header>
+									</article>
+								</div>
+								<div class="4u$ 12u$(mobile)">
+									<article class="item">
+										<a href="#" class="image fit"><img src="Columbia%20University%20EECS%20E4764%20IoT%20Project%20Report%20%230_files/pic07.jpg" alt=""></a>
+										<header>
+											<h3>Adib Khondoker</h3>
+											<p>aak2250@columbia.edu</p>
+										</header>
+									</article>
+								</div>
+							</div>
+
+						</div>
+					</section>
+
+				<!-- Contact -->
+					<section id="contact" class="four">
+						<div class="container">
+
+							<header>
+								<h2>Contact</h2>
+							</header>
+
+							<p align="left">
+								<strong>Revath Sankar: </strong>rs4485@columbia.edu<br>
+								<strong>Dexin Huang: </strong>dh3172@columbia.edu<br>
+								<strong>Adib Khondoker: </strong>aak2250@columbia.edu<br>
+							<br>
+								<strong>Columbia University </strong><a href="http://www.ee.columbia.edu/">Department of Electrical Engineering</a><br>
+								<!-- <strong>Class Website:</strong>
+									<a href="https://edblogs.columbia.edu/eecs4764-001-2019-3/">Columbia University EECS E4764 Fall '22 IoT</a></br> -->
+								<strong>Instructor:</strong> <a href="https://www.engineering.columbia.edu/faculty-staff/directory/xiaofan-fred-jiang">Professsor Xiaofan (Fred) Jiang</a>
+							</p>
+
+
+							<!-- <form method="post" action="#">
+								<div class="row">
+									<div class="6u 12u$(mobile)"><input type="text" name="name" placeholder="Name" /></div>
+									<div class="6u$ 12u$(mobile)"><input type="text" name="email" placeholder="Email" /></div>
+									<div class="12u$">
+										<textarea name="message" placeholder="Message"></textarea>
+									</div>
+									<div class="12u$">
+										<input type="submit" value="Send Message" />
+									</div>
+								</div>
+							</form> -->
+
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<div id="footer">
+
+				<!-- Copyright -->
+					<ul class="copyright">
+						<li>© IoT Project | All rights reserved.</li><li>Design: <a href="http://html5up.net/">HTML5 UP</a></li>
+					</ul>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="Columbia%20University%20EECS%20E4764%20IoT%20Project%20Report%20%230_files/jquery.min.js"></script>
+			<script src="Columbia%20University%20EECS%20E4764%20IoT%20Project%20Report%20%230_files/jquery.scrolly.min.js"></script>
+			<script src="Columbia%20University%20EECS%20E4764%20IoT%20Project%20Report%20%230_files/jquery.scrollzer.min.js"></script>
+			<script src="Columbia%20University%20EECS%20E4764%20IoT%20Project%20Report%20%230_files/skel.min.js"></script>
+			<script src="Columbia%20University%20EECS%20E4764%20IoT%20Project%20Report%20%230_files/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="Columbia%20University%20EECS%20E4764%20IoT%20Project%20Report%20%230_files/main.js"></script>
+
+	
+
+<div id="headerToggle"><a href="#header" class="toggle"></a></div></body></html>

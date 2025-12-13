@@ -125,7 +125,20 @@
 
 							<h3 align="left">Architecture</h3>
 
-							<p align="left">Blah blah blah</p>
+							<figure style="text-align: center;">
+  								<img src="images/sys_arch.png" style="max-width: 90%;">
+  								<figcaption>Fig.0 – System Architecture</figcaption>
+							</figure>
+
+							<p align="left">
+							The system follows an edge-to-cloud architecture designed to 
+							support real-time assistive object detection. A Raspberry Pi equipped with a camera serves as the edge device, capturing image frames from the 
+							environment. These frames are periodically transmitted via HTTPS POST requests to a YOLOv8 inference service deployed on Google Cloud Run. 
+							The cloud service performs object detection and returns structured JSON responses containing class labels, confidence scores, and bounding box 
+							coordinates. The Raspberry Pi then uses this information to render detections on a local graphical interface, providing situational awareness to the 
+							user. While the architecture includes a flight control subsystem to illustrate a potential mobile deployment, autonomous navigation is presented as a 
+							planned extension rather than a fully implemented feature in the current prototype.
+							</p>
 
 
 							<h3 align="left">Technical Components</h3>
@@ -254,13 +267,152 @@ ESP32-CAM --> HTTPS POST --> Cloud Run (YOLOv8) --> JSON Response
   Capture                    Inference            person_detected
   Image                      ~150ms                  true/false
 							</pre>
-
+						<p align="left">CAM captures images and sends to Cloud Run API. API returns detection results for display or alerts.</p>
 						<hr>
 						<h3 align="left">Prototype</h3>
 
-						<p align="left">ESP32-CAM captures images and sends to Cloud Run API. API returns detection results for display or alerts.</p>
+					
 
+						<figure style="text-align: center;">
+  								<img src="images/circuit_dgm.png" style="max-width: 90%;">
+  								<figcaption>Wiring Diagram of peripherals</figcaption>
+						</figure>
 
+						<hr>
+						<h4 align="left">Prototype - Sensors & Peripherals</h4>
+						
+						<p align="left">
+								For our Prototype Autonomous Drone system, the components consisted of a Raspberry PI + Cam for primary flight control and image capture, 4 Lidar Sensors, a BNO055 IMU, and a PWM breakout board on a 3rd party drone kit package
+								The goal was to utilize lidar sensors covering the drones sides to keep it from hitting into obstacles, an Adafruit BNO055 IMU to keep track of its position and how far it has traveled
+								and feed it into a PID algorithm to keep the drones flight characteristics stable. Then the onboard camera would capture images
+						</p>
+
+						
+				
+
+						<p align="left">
+						Autonomous mobility was explored as part of the system design; however, full autonomous flight was not completed within the project timeframe. During testing, a hardware failure resulted in a crash that prevented further validation of the autonomous control loop. As a result, the implemented prototype focuses on the vision-based detection, cloud inference, and visualization pipeline, while the flight-control subsystem is presented as planned future work.
+						</p>
+
+						<figure style="text-align: center;">
+  								<img src="images/bn005imu.png" style="max-width: 90%;">
+  								<figcaption>Adafruit BNO005 IMU</figcaption>
+						</figure>
+
+						<p align="left">
+						The Adafruit BNO055 serves as the inertial sensing component of the system, providing real-time orientation and motion data. It is a 9-DOF absolute orientation sensor that integrates an accelerometer, gyroscope, and magnetometer and communicates with the raspberry pi over UART. 
+						Within the system architecture, the BNO055 is intended to supply attitude and orientation feedback to the flight-control subsystem. In a fully autonomous configuration, this data would be combined with vision-based detections and other sensor inputs and fed into a PID control loop to stabilize motion and guide navigation. 
+						To use this sensor with the Raspberry PI, the following library must be installed using: <br> 
+
+						sudo pip3 install adafruit-circuitpython-bno055
+						</p>
+
+						<figure style="text-align: center;">
+  								<img src="images/lidar.jpg" style="max-width: 90%;">
+  								<figcaption>VL53L0X Lidar Sensors</figcaption>
+						</figure>
+
+						<p align="left">
+						The VL53L0X LiDAR sensor is used for short-range distance measurements with a typical sensing range of up to approximately 2 meters according to its specifications.
+						In the proposed system, multiple VL53L0X sensors would be mounted on the sides of the drone to monitor proximity to surrounding surfaces 
+						such as walls and furniture to allow the system to detect obstacles before physical contact occurs, enabling the drone to slow down 
+						or adjust its trajectory to avoid collisions during operation.
+						</p>
+
+						<p align="left">
+						To use these sensors with the Raspberry pi, you must install these libraries and enable 12c communication through:
+						</p>
+
+						<p align="left">
+						sudo pip3 install adafruit-circuitpython-vl53l0x
+
+						</p>
+
+						<p align="left">
+						sudo apt-get install python3-smbus
+						</p>
+
+						<p align="left">
+						Enable I2C Interface:
+
+						sudo raspi-config
+						# Navigate to: Interface Options → I2C → Enable <br>
+						</p>
+
+						<p align="left">
+						Because multiple VL53L0X LiDAR sensors share the same default I²C address, an address management procedure is required to operate multiple sensors on a single I²C bus. Each sensor exposes an XSHUT (shutdown) pin, which allows the device to be individually enabled or disabled. On system boot, all sensors are initially held in shutdown. Sensors are then enabled one at a time, and upon activation, each sensor’s I²C address is reassigned in software before enabling the next sensor. This process ensures that all sensors operate concurrently on the same bus without address conflicts. The address assignment and sensor initialization are implemented programmatically using Python on the Raspberry Pi.
+						</p>
+
+						<figure style="text-align: center;">
+  								<img src="images/pwm.jpg" style="max-width: 90%;">
+  								<figcaption>Adafruit 16 channel PWM PCA9685</figcaption>
+						</figure>
+
+						<p align="left">
+						The Adafruit 16-Channel PWM/Servo HAT (PCA9685) is used to generate stable, hardware-timed PWM signals needed for motor and actuator control. 
+						The Raspberry Pi has limited native hardware PWM outputs, and software-driven PWM can introduce timing jitter when the CPU is busy 
+						(capturing frames, networking, or running application logic). 
+						The PWM generation offloaded to a dedicated controller over I2C. 
+						In our system design, this board would regulate motor thrust and enable consistent control 
+						behavior required for closed-loop stabilization. Although full autonomous flight was not completed within the project timeframe, the PWM HAT 
+						defines the intended motor-control layer for scalable, reliable actuation. <br>
+
+						You need to install the following libraries<br>
+
+    					sudo pip3 install adafruit-circuitpython-pca9685 <br>
+						sudo pip3 install adafruit-circuitpython-servokit
+
+						</p>
+
+						<hr>
+						<h4 align="left">Prototype - PID Algorithm</h4>
+						
+						<figure style="text-align: center;">
+  								<img src="images/PID_Controller.png" style="max-width: 90%;">
+  								<figcaption>Diagram of PID Controller Algorithm by Ariffanan Basri </figcaption>
+						</figure>
+						
+						<h4 align="left">Planned PID-Based Control Loop (Intended Autonomous Behavior)</h4>
+
+						<p align="left">
+						To support autonomous mobility, we designed a closed-loop PID control structure that would continuously correct the drone’s motion using sensor feedback. At a high level, the controller compares a desired setpoint (e.g., target altitude, heading, or position) against the measured state from onboard sensors, computes an error signal, and outputs motor commands that reduce this error over time. The standard PID control law is:
+						</p>
+
+						<p align="left">
+						$$e(t) = x_d(t) - x(t)$$
+						$$u(t) = K_p e(t) + K_i\int_0^t e(\tau)\,d\tau + K_d\frac{de(t)}{dt}$$
+						</p>
+
+						<p align="left">
+						In our implementation plan, the proportional term would provide immediate corrective action proportional to the current error, the integral term would compensate for persistent bias (e.g., gravity, imbalance, steady disturbances), and the derivative term would damp rapid changes to reduce overshoot and oscillation. Because quadrotor dynamics are coupled and underactuated, the intended design uses a cascaded approach rather than a single PID loop for all states.
+						</p>
+
+						<ul align="left">
+						<li><b>Altitude control:</b> a PID loop on vertical position would output a total thrust command (collective thrust) to raise or lower the drone.</li>
+						<li><b>Attitude control:</b> separate PID loops for roll, pitch, and yaw would output corrective torque commands to stabilize the platform orientation.</li>
+						<li><b>Position control:</b> outer-loop PID control on horizontal position (x/y) would generate desired roll and pitch setpoints (tilt commands). These attitude setpoints would then be tracked by the inner attitude PID loops.</li>
+						<li><b>Motor mixing:</b> the final stage would convert the collective thrust and torque commands into individual motor/ESC PWM signals (e.g., via a PCA9685 PWM HAT), enabling differential thrust for stabilization and turning.</li>
+						</ul>
+
+						<p align="left">
+						In practice, this structure would run at a fixed control frequency with measured timestep <i>dt</i>, include actuator saturation limits, and implement anti-windup handling for the integral term to prevent instability when motor commands hit their maximum or minimum values. While full autonomous flight was not completed within the project timeframe due to hardware failure during testing, the above control design reflects the intended approach we aimed to implement and tune on our platform.
+						</p>
+						
+						<hr>
+						<h4 align="left">System Operation and Flight Software Architecture</h4>
+						
+						<p align="left">
+During flight, the onboard software is structured as a dual-loop system to ensure that time-critical motor control is never blocked by network operations. A high-frequency control loop continuously reads orientation data from the BNO055 inertial measurement unit (IMU) over the I<sup>2</sup>C bus to estimate the current attitude of the platform (roll, pitch, and yaw). This loop computes stabilization corrections using a PID controller and sends updated motor commands to the PCA9685 PWM HAT, which generates PWM signals for each electronic speed controller (ESC).
+</p>
+
+<p align="left">
+In parallel, a lower-frequency perception loop periodically captures a JPEG image from the Raspberry Pi camera and transmits it to a Google Cloud Run endpoint via an HTTPS POST request. The server performs YOLO-based object detection and returns a JSON response containing detection results such as class labels, confidence scores, and bounding box coordinates. These results are stored in shared state and can be accessed by higher-level mission logic.
+</p>
+
+<p align="left">
+Based on the returned perception data, the mission logic can optionally modify behavior, such as pausing translational motion and maintaining a stable hover when a person is detected. For demonstration purposes, the overall mission profile is implemented as a predetermined, time-based sequence (e.g., takeoff and hover, small yaw sweeps, and forward motion segments), while the perception pipeline runs concurrently in the background and logs detections in real time.
+</p>
+						
 
 						</div>
 					</section>
@@ -352,12 +504,7 @@ ESP32-CAM --> HTTPS POST --> Cloud Run (YOLOv8) --> JSON Response
 							</table>
 							<figcaption>Figure 2 - Validation Set Performance for Non-Pretrainefd and Pretrained YOLOv8 Models on HomeObjects-3K dataset</figcaption>
 							</figure>
-							<article class="item">
-								<a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a>
-								<header>
-									<h3>Caption</h3>
-								</header>
-							</article>
+					
 
 
 						</div>
@@ -383,6 +530,11 @@ ESP32-CAM --> HTTPS POST --> Cloud Run (YOLOv8) --> JSON Response
 								<li>
 									<blockquote cite="https://docs.ultralytics.com/models/yolov8/">
 									<p>Ultralytics. “Explore Ultralytics Yolov8.” Ultralytics YOLO Docs, 28 Oct. 2025, docs.ultralytics.com/models/yolov8/. </p>
+									</blockquote>
+								</li>
+								<li>
+									<blockquote cite="https://www.researchgate.net/publication/373457893_Trajectory_Tracking_of_a_Quadcopter_UAV_using_PID_Controller/">
+									<p>Basri, Ariffanan . “Trajectory Tracking of a Quadcopter UAV using PID Controller </p>
 									</blockquote>
 								</li>
 							</ol>
@@ -416,10 +568,11 @@ ESP32-CAM --> HTTPS POST --> Cloud Run (YOLOv8) --> JSON Response
 								</div>
 								<div class="4u 12u$(mobile)">
 									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a>
+										<a href="#" class="image fit"><img src="images/Adib_pfp.jpg" alt="" /></a>
 										<header>
-											<h3>Dexin Huang</h3>
-											<p>dh3172@columbia.edu</p>
+											<h3>Adib Khondoker</h3>
+											<p>Masters Candidate in Computer Engineering - Interested in Embedded Systems and FPGA Design</p>
+											<p>aak2250@columbia.edu</p>
 										</header>
 									</article>
 								</div>
@@ -427,12 +580,14 @@ ESP32-CAM --> HTTPS POST --> Cloud Run (YOLOv8) --> JSON Response
 									<article class="item">
 										<a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a>
 										<header>
-											<h3>Adib Khondoker</h3>
-											<p>aak2250@columbia.edu</p>
+											<h3>Dexin Huang</h3>
+											<p>dh3172@columbia.edu</p>
 										</header>
 									</article>
 								</div>
 							</div>
+
+							
 
 						</div>
 					</section>

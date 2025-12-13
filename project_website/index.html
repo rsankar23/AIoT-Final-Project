@@ -1,0 +1,437 @@
+<!DOCTYPE HTML>
+<!--
+	Prologue by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Columbia University EECS E4764 IoT Project Report #0</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<script type="text/javascript" id="MathJax-script" async
+      		src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    	</script>
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Header -->
+			<div id="header">
+
+				<div class="top">
+
+					<!-- Logo -->
+						<div id="logo">
+							<!-- <span class="image avatar48"><img src="images/avatar.jpg" alt="" /></span> -->
+							<h1 id="title">Vision Based Mobile Assistive Detection System</h1>
+							<p>Columbia University <br>
+								EECS E4764 Fall'25 <br>
+								Artificial Intelligence of Things<br>
+								Team 20 Project Report
+							</p>
+						</div>
+
+					<!-- Nav -->
+						<nav id="nav">
+							<!--
+
+								Prologue's nav expects links in one of two formats:
+
+								1. Hash link (scrolls to a different section within the page)
+
+								   <li><a href="#foobar" id="foobar-link" class="icon fa-whatever-icon-you-want skel-layers-ignoreHref"><span class="label">Foobar</span></a></li>
+
+								2. Standard link (sends the user to another page/site)
+
+								   <li><a href="http://foobar.tld" id="foobar-link" class="icon fa-whatever-icon-you-want"><span class="label">Foobar</span></a></li>
+
+							-->
+							<ul>
+								<li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Abstract</span></a></li>
+								<li><a href="#motivation" id="motivation-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Motivation</span></a></li>
+								<li><a href="#system" id="system-link" class="skel-layers-ignoreHref"><span class="icon fa-th">System</span></a></li>
+								<li><a href="#results" id="results-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Results</span></a></li>
+								<li><a href="#references" id="references-link" class="skel-layers-ignoreHref"><span class="icon fa-th">References</span></a></li>
+								<li><a href="#team" id="team-link" class="skel-layers-ignoreHref"><span class="icon fa-user">Our Team</span></a></li>
+								<li><a href="#contact" id="contact-link" class="skel-layers-ignoreHref"><span class="icon fa-envelope">Contact</span></a></li>
+							</ul>
+						</nav>
+
+				</div>
+
+				<div class="bottom">
+
+					<!-- Social Icons -->
+						<ul class="icons">
+							<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+							<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+							<li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+
+				</div>
+
+			</div>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- Intro -->
+					<section id="top" class="one dark cover">
+						<div class="container">
+
+								<iframe width="560" height="315" src="tps://youtu.be/6xA6abjEwww" frameborder="0" allowfullscreen></iframe>
+
+								<h2 class="alt">Vision Based Mobile Assistive Detection System</h2>
+								<p>Group 20 - Adib Khondoker, Dexin Huang, Revath Sankar</p>
+								
+
+
+							<footer>
+								<a href="#motivation" class="button scrolly">Motivation</a>
+							</footer>
+
+						</div>
+					</section>
+
+				<!-- Portfolio -->
+					<section id="motivation" class="two">
+						<div class="container">
+
+							<header>
+								<h2>Motivation</h2>
+							</header>
+							<ul>
+								<li>Goal of the project is to develop a computer vision system for local assistive operations by utilizing computer vision to support the visually impaired in low-light or poor-visibility conditions</li>
+								<li>Use onboard detection hardware to locate sother individuals and objects and relay their positions to a GUI on a laptop/mobile device for the user</li>
+							</ul>
+						</div>
+					</section>
+
+
+					<section id="system" class="three">
+						<div class="container">
+
+							<header>
+								<h2>System</h2>
+							</header>
+
+							<p align="left">Remember to use combination of descriptions, photos, and figures</p>
+
+							<h3 align="left">Architecture</h3>
+
+							<figure>
+								<img src = "images/yolo_v8_arch.webp" >
+								<figcaption>Fig.1 - YOLO Backbone, Neck, Head Architecture</figcaption>
+							</figure>
+
+							<p align="left">Blah blah blah</p>
+
+
+							<h3 align="left">Technical Components</h3>
+
+
+							<h4 align="left">Real-Time Vision Algorithm</h4>
+							<p align="left">
+								The "YOLO" (You Only Look Once) algorithm is a prominent real-time object detection algorithm that uses a single convolutional neural network to predict bounding boxes and classify objects simultaneously. YOLO is unique in that it treats object detection as a single regression task, predicting bouding boxes and class probabilities directly from full images in one evaluation. This has made YOLO significantly faster than previous two-way detectors.
+							</p>
+							<figure>
+								<img src = "images/yolo_v8_arch.webp" >
+								<figcaption>Fig.1 - YOLO Backbone, Neck, Head Architecture</figcaption>
+							</figure>
+							
+							<h5 align="left"left>Model Architecture</h5>
+							<p align="left">The YOLO model is comprised of a three-part architectured that follows a "Backbone, Neck, Head" pattern. In this architecture, the backbone serves to extract core features from the input image, the neck takes in multi-scale features from the backbone and fuses or aggregates them to create a richer feature set; often using the Feature Pyramid Network and Path Aggression Network techniques, finally, the head consumes the refined feature information from the neck to make final predictions, generate bounding box coordinates; object confidence scores and class labels. The model selects the best optimizer; in this case the ADAM Optimization algorithm. Additionally, the YOLO version 8, which we are utilizing for the purposes of this experiment leverages a modified CSP Darknet architecture - with several C2F modules to reduce computational redundancy, improve gradient flow and feature reuse; the model is also anchor-free, allowing the model to directly predict bounding box properties, eliminating the need for pre-defined anchor boxes and the typical clustering process.</p>
+
+							<table style="border: 2px solid; border-color: #114D34;">
+								<tr style="border: 2px solid #114D34;">
+									<th><strong>Parameter</strong></th>
+									<th><b>Value</b></th>
+								</tr>
+								<tr>
+									<th>Training Epochs</th>
+									<th>100</th>
+								</tr>
+								<tr>
+									<th>Image Size</th>
+									<th>640 px</th>
+								</tr>
+								<tr>
+									<th>Training Size</th>
+									<th>80%</th>
+								</tr>
+								<tr>
+									<th>Cosine Learning Rate</th>
+									<th>True</th>
+								</tr>
+								<tr>
+									<th>Workers</th>
+									<th>100</th>
+								</tr>
+								<th>Learning Rate</th>
+								<th>1e-2</th>
+							</table>
+						<hr>
+						<h5 align="left">HomeObjects-3K Dataset</h5>
+							<p align="left">The HomeObjects-3K dataset is a curated collection of indoor household object images designed specifically for training, validating, and benchmarking object detection models like YOLO. It was released by the Ultralytics team (the maintainers of YOLO) and is included as a sample dataset in the Ultralytics documentation and tools.</p>
+							<table style="border: 2px solid; border-color: #114D34;">
+								<tr style="border: 2px solid; border-color: #114D34;">
+									<th>Total Images</th>
+									<th>Training Set Size</th>
+									<th>Validation Set Size</th>
+								</tr>
+								<tr>
+									<td>~3,000</td>
+									<td>2,285</td>
+									<td>404</td>
+								</tr>
+							</table>
+
+							<table>
+								<tr>
+									<th>True Label</th>
+									<th>Predictions</th>
+								</tr>
+								<tr>
+									<td><img src="images/data_snap/val_batch0_labels.jpg" class="plot"></td>
+									<td><img src="images/data_snap/val_batch0_pred.jpg" class="plot"></td>
+								</tr>
+							</table>
+
+						<hr>
+						<h3 align="left">Prototype</h3>
+
+						<p align="left">Blah blah blah</p>
+
+
+
+						</div>
+					</section>
+
+
+					<section id="results" class="two">
+						<div class="container">
+
+							<header>
+								<h2>Results</h2>
+							</header>
+							<h4 align="left">YOLO Object Detection Performance</h4>
+							<p align="left">Fine-tuning YOLOv8n on home-relevant classes achieved 85.4% mAP with significant noise reduction. The specialized model increased average confidence from 37.3% to 68.5% compared to the pretrained COCO dataset. By focusing on only 12 classes of common household objects instead of 80, the model eliminates false positives like surfboards and laptops that distract from assistive operations.</p>
+							<p align="left">$$Precision = \frac{TP}{TP + FP}$$</p>
+							<p align="left">$$Recall = \frac{TP}{TP + FN}$$</p>
+							<p align="left">$$F-1 = 2\times\frac{precision \times recall}{precision + recall}$$</p>
+							<p align="left">Below are the plots generated from the testing phase with a randomly sampled 20% of the initial dataset. The F1 Confidence Curve plots the F1 score against different confidence thresholds. A higher F1 score indicates better performance, and the confidence threshold at which the F1 score is maximized is often considered the optimal threshold for making predictions. As seen in Fig.2, the F-1 Confidence curve under the pre-trained model demonstrates a higher peak when managing the HomeObjects-3K dataset, compared to the base model @ (0.345, 0.67) for the totality of classes. We can next evaluate the Precision-Recall Curve is a plot that shows the trade-off between precision and recall for different threshold values. The area under the curve (AUC) is a measure of how well the model is able to distinguish between classes; and as expected the pretrained model not only exhibits a higher AUC, but also has a non-zero area unlike the base model; this essentially confirms that the initial training is insufficient for our task of identification and detection. The Precision-Confidence & Recall-Confidence Curve plots precision and recall respectively against different confidence thresholds. For both of these cases, we can see that the Non-Pretrained model significantly underpreformed, not exhibitng the typical or ideal behavior in either case (Recall-Confidence with trendline decreasing from top-left to bottom-right traversing along x-axis; Precision-Confidence having a trendline that exhibits an increasing trendline across the x-axis with high confidence across all precisions).</p>
+							<p align="left">On review of the summary statistics, we can see that for each of the twelve classes the measured precision (P), recall (R), mean average precision (mAP50) commonly used to evaluate the quality of object detectors, and Mean Average Precision averaged over IoU thresholds from 50% to 95% (at 5% steps), a stricter object detection evaluation metric the pretrained model consistently outperforms the base model in bounding and detection tasks. The precision and recall of the object classifications and bounding box measurements are orders of magnitude higher in the pre-trained model as compared to the non-pretrained model; this can be most easily be seen through the Confusion matrices where the non-pretrained model not only commonly misidentifies common household objects, but also misidentifies objects as background content. </p>
+
+
+							<hr>
+							<ol align="left" type="I">
+								<li>True Positives (TP): The cases in which the model correctly predicted the positive class.</li>
+								<li>True Negatives (TN): The cases in which the model correctly predicted the negative class.</li>
+								<li> Positives (FP): The cases in which the model incorrectly predicted the positive class (a "false alarm").</li>
+								<li>False Negatives (FN): The cases in which the model failed to predict the positive class (a "miss").</li>
+							</ol>
+
+							<hr>
+							<table style="border: 2px solid; border-color: #114D34;">
+								<tr style="border: 2px solid; border-color: #114D34;">
+									<th>Training Statistic</th>
+									<th>Value</th>
+								</tr>
+								<tr>
+									<td>Box Loss</td>
+									<td>0.8619</td>
+								</tr>
+								<tr>
+									<td>Classification Loss</td>
+									<td>0.5749</td>
+								</tr>
+								<tr>
+									<td>Focal Loss (DFL)</td>
+									<td>1.004</td>
+								</tr>
+							</table>
+							<figure>
+							<table style="border: 2px solid; border-color: #114D34;" class="plots">
+								<tr style="border: 2px solid; border-color: #114D34;">
+									<th>Metric</th>
+									<th>Non-Pretrained Model Plot</th>
+									<th>Pretrained Model Plot</th>
+								</tr>
+								<tr >
+									<td>F1-Confidence Curve</td>
+									<td><img src="images/no_pre/BoxF1_curve.png" class="plot"></td>
+									<td><img src="images/BoxF1_curve_1.png" class="plot"></td>
+								</tr>
+								<tr>
+									<td>Precision-Confidence Curve</td>
+									<td><img src="images/no_pre/BoxP_curve.png" class="plot"></td>
+									<td><img src="images/BoxP_curve.png" class="plot"></td>
+								</tr>
+								<tr>
+									<td>Precision-Recall Curve</td>
+									<td><img src="images/no_pre/BoxPR_curve.png" class="plot"></td>
+									<td><img src="images/BoxPR_curve.png" class="plot"></td>
+								</tr>
+								<tr>
+									<td>Recall-Confidence Curve</td>
+									<td><img src="images/no_pre/BoxR_curve.png" class="plot"></td>
+									<td><img src="images/BoxR_curve.png" class="plot"></td>
+								</tr>
+								<tr>
+									<td>Confusion Matrix</td>
+									<td><img src="images/no_pre/confusion_matrix_normalized.png" class="plot"></td>
+									<td><img src="images/confusion_matrix_normalized.png" class="plot"></td>
+								</tr>
+							</table>
+							<figcaption>Figure 2 - Validation Set Performance for Non-Pretrainefd and Pretrained YOLOv8 Models on HomeObjects-3K dataset</figcaption>
+							</figure>
+							<article class="item">
+								<a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a>
+								<header>
+									<h3>Caption</h3>
+								</header>
+							</article>
+
+
+						</div>
+					</section>
+
+					<section id="references" class="three">
+						<div class="container">
+
+							<header>
+								<h2>References</h2>
+							</header>
+							<ol>
+								<li>
+									<blockquote cite="https://viso.ai/deep-learning/yolov8-guide/">
+									<p>Boesch, Gaudenz. “Explore Yolov8: Latest in Object Detection Tech.” Viso.Ai, viso.ai, 4 Apr. 2025, viso.ai/deep-learning/yolov8-guide/. </p>
+									</blockquote>
+								</li>
+								<li>
+									<blockquote cite="https://docs.ultralytics.com/datasets/detect/homeobjects-3k/">
+									<p>Ultralytics. “HomeObjects-3K Dataset.” Ultralytics YOLO Docs, 16 Nov. 2025, docs.ultralytics.com/datasets/detect/homeobjects-3k/. </p>
+									</blockquote>
+								</li>
+								<li>
+									<blockquote cite="https://docs.ultralytics.com/models/yolov8/">
+									<p>Ultralytics. “Explore Ultralytics Yolov8.” Ultralytics YOLO Docs, 28 Oct. 2025, docs.ultralytics.com/models/yolov8/. </p>
+									</blockquote>
+								</li>
+							</ol>
+							
+
+						</div>
+					</section>
+
+
+				<!-- About Me -->
+					<section id="team" class="two">
+						<div class="container">
+
+							<header>
+								<h2>Our Team</h2>
+							</header>
+
+							<!-- <a href="#" class="image featured"><img src="images/pic08.jpg" alt="" /></a> -->
+
+
+							<div class="row">
+								<div class="4u 12u$(mobile)">
+									<article class="item">
+										<a href="#" class="image fit"><img src="images/RS_Profile.jpeg" alt="" /></a>
+										<header>
+											<h3>Revath Sankar</h3>
+											<p>Masters candidate in Biomedical Engineering - Interested in applications of computer vision in biomedical AI.</p>
+											<a href="https://www.linkedin.com/in/revath-sankar/">LinkedIn</a>
+										</header>
+									</article>
+								</div>
+								<div class="4u 12u$(mobile)">
+									<article class="item">
+										<a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a>
+										<header>
+											<h3>Team Member</h3>
+											<p>Description and link</p>
+										</header>
+									</article>
+								</div>
+								<div class="4u$ 12u$(mobile)">
+									<article class="item">
+										<a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a>
+										<header>
+											<h3>Team Member</h3>
+											<p>Description and link</p>
+										</header>
+									</article>
+								</div>
+							</div>
+
+						</div>
+					</section>
+
+				<!-- Contact -->
+					<section id="contact" class="four">
+						<div class="container">
+
+							<header>
+								<h2>Contact</h2>
+							</header>
+
+							<p align="left">
+								<strong>Contact Name 1: Revath Sankar </strong>rs4485@columbia.edu</br>
+								<strong>Contact Name 2: </strong>email here</br>
+								<strong>Other Contact Information: </strong>other contact info</br>
+							</br>
+								<strong>Columbia University </strong><a href="http://www.ee.columbia.edu">Department of Electrical Engineering</a><br>
+								<!-- <strong>Class Website:</strong>
+									<a href="https://edblogs.columbia.edu/eecs4764-001-2019-3/">Columbia University EECS E4764 Fall '22 IoT</a></br> -->
+								<strong>Instructor:</strong> <a href="https://www.engineering.columbia.edu/faculty-staff/directory/xiaofan-fred-jiang">Professsor Xiaofan (Fred) Jiang</a>
+							</p>
+
+
+							<!-- <form method="post" action="#">
+								<div class="row">
+									<div class="6u 12u$(mobile)"><input type="text" name="name" placeholder="Name" /></div>
+									<div class="6u$ 12u$(mobile)"><input type="text" name="email" placeholder="Email" /></div>
+									<div class="12u$">
+										<textarea name="message" placeholder="Message"></textarea>
+									</div>
+									<div class="12u$">
+										<input type="submit" value="Send Message" />
+									</div>
+								</div>
+							</form> -->
+
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<div id="footer">
+
+				<!-- Copyright -->
+					<ul class="copyright">
+						<li>&copy; IoT Project | All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollzer.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
